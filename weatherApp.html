@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="weatherApp.css">
+    
+    
+</head>
+<body>
+    
+
+
+    <h1>WEATHER APP</h1>
+
+<div class="input">
+    <input class="inputValue" type="text" placeholder="Enter Your Zip Code">
+    <input type="submit" value="submit" class="button">
+</div>
+   
+
+<div class="display">
+    <h1 class="name"></h1>
+    <p class="desc"></p>
+    <p class="temp"></p>
+
+</div>
+
+
+<!-- <script src="bundle.js"></script> -->
+
+    <!-- <script src="weatherApp.js"></script> -->
+    <script type="text/javascript" src="node_modules/moment/min/moment.min.js"></script>
+   <script type="text/javascript" src="node_modules/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
+   
+<!-- JAVASCRIPT STARTS HERE -->
+
+<script type="text/javascript">
+
+
+
+
+// HOW TO FIND TIME ZONE
+// latitude and longitude of zip code
+// find latitude and longitude to time zone
+
+
+// CONSOLE LOG WEATHER API
+// weather.cord for L&L
+// weather.main.temp for TEMP
+// second open weather API
+
+
+// MOMENT CLOCK
+    // setInterval(function(){ 	
+    //     var time = new moment();     
+    //     console.log(time.format('h:mm:ss a')); }, 3000)
+
+// TIME ZONE
+
+// var newYork  = moment.tz("2014-06-01 12:00", "America/New_York");
+
+// console.log(newYork.format());
+
+// const nDate = new Date().toLocaleString('en-US', {
+//   timeZone: 'Asia/Calcutta'
+// });
+
+// console.log(nDate);
+
+// console.log(moment.tz.names());
+
+// var a = moment.tz("2013-11-18 11:55", "Asia/Taipei");
+// var b = moment.tz("2013-11-18 11:55", "America/Toronto");
+
+// a.format(); // 2013-11-18T11:55:00+08:00
+// b.format(); // 2013-11-18T11:55:00-05:00
+
+// console.log(a);
+
+// WEATHER
+        
+var button = document.querySelector('.button');
+var inputValue = document.querySelector('.inputValue');
+var name = document.querySelector('.name');
+var desc = document.querySelector('.desc');
+var temp = document.querySelector('.temp');
+
+
+
+
+// COPY
+
+// button.addEventListener('click', function(){
+//     fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputValue.value+'&appid=98714695d6d6eca2461e95c2aa78b140')
+//     .then(response => response.json())
+//     .then(data => console.log(data))
+//     .then(data => {
+//         var nameValue = data['name'];
+//         var tempValue = data['main']['temp'];
+//         var descValue = data['weather'][0]['description'];
+
+//         name.innerHTML = nameValue;
+//         temp.innerHTML = tempValue;
+//         desc.innerHTML = descValue;
+//     });
+
+// COPY
+
+
+button.addEventListener('click', function(){
+    fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputValue.value+'&appid=98714695d6d6eca2461e95c2aa78b140')
+    .then(response => response.json())
+    // .then(data => console.log(data))
+    .then(data => {
+        var nameValue = data['name'];
+        var tempValue = data['main']['temp'];
+        var descValue = data['weather'][0]['description'];
+
+        name.innerHTML = nameValue;
+        temp.innerHTML = tempValue;
+        desc.innerHTML = descValue;
+    })
+});
+
+    // $.get('https://api.openweathermap.org/data/2.5/weather?zip=' + zipCode + ',us&appid='+apiKey, function (response) {
+    //     console.log(response);
+    // });
+
+    
+
+// .catch(err => alert("wrong city name!"))
+// })
+
+
+        
+
+
+
+
+        
+        
+        
+</script>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
