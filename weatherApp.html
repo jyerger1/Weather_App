@@ -10,6 +10,13 @@
 </head>
 <body>
     
+<div class="container">
+  
+<!--  -->
+
+
+
+
 
 
     <h1>WEATHER APP</h1>
@@ -21,11 +28,24 @@
    
 
 <div class="display">
-    <h1 class="name"></h1>
+    <h1 class="cityName"></h1>
     <p class="desc"></p>
     <p class="temp"></p>
+    <p class="tzname"></p>
+  
 
 </div>
+
+
+
+
+
+
+<!--  -->
+  
+</div>
+
+
 
 
 <!-- <script src="bundle.js"></script> -->
@@ -37,6 +57,78 @@
 <!-- JAVASCRIPT STARTS HERE -->
 
 <script type="text/javascript">
+
+
+
+
+        
+var button = document.querySelector('.button');
+var inputValue = document.querySelector('.inputValue');
+var cityName = document.querySelector('.cityName');
+var desc = document.querySelector('.desc');
+var temp = document.querySelector('.temp');
+var tzname = document.querySelector('.tzname');
+
+
+
+
+
+button.addEventListener('click', function(){
+    fetch('https://api.openweathermap.org/data/2.5/weather?zip='+inputValue.value+'&units=imperial&appid=98714695d6d6eca2461e95c2aa78b140')
+    .then(response => response.json())
+    // .then(data => console.log(data))
+    .then(data => {
+        var nameValue = data.name;
+        var tempValue = data.main.temp;
+        var descValue = data.weather[0].description;
+        var lat = data.coord.lat;
+        var long = data.coord.lon;
+
+        cityName.innerHTML = nameValue;
+        temp.innerHTML = tempValue;
+        desc.innerHTML = descValue;
+
+        fetch('https://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='+long+'&units=imperial&appid=98714695d6d6eca2461e95c2aa78b140')
+        .then(response => response.json())
+        .then(x => {
+            tzname.innerHTML = moment().tz(x.timezone).format();
+            console.log(x);
+
+            var time = new moment()     
+            console.log(time.format('h:mm:ss a'));
+            
+            console.log(moment().tz(x.timezone).format())
+        })
+
+      
+    })
+});
+
+
+
+
+        
+
+
+
+
+        
+        
+        
+</script>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+<!-- 
+
 
 
 
@@ -54,7 +146,7 @@
 
 // MOMENT CLOCK
     // setInterval(function(){ 	
-    //     var time = new moment();     
+    //     var time = new moment()     
     //     console.log(time.format('h:mm:ss a')); }, 3000)
 
 // TIME ZONE
@@ -80,12 +172,22 @@
 // console.log(a);
 
 // WEATHER
-        
-var button = document.querySelector('.button');
-var inputValue = document.querySelector('.inputValue');
-var name = document.querySelector('.name');
-var desc = document.querySelector('.desc');
-var temp = document.querySelector('.temp');
+
+
+// 'https://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='+lon+'/
+
+
+
+
+
+    // $.get('https://api.openweathermap.org/data/2.5/weather?zip=' + zipCode + ',us&appid='+apiKey, function (response) {
+    //     console.log(response);
+    // });
+
+    
+
+// .catch(err => alert("wrong city name!"))
+// })
 
 
 
@@ -106,56 +208,4 @@ var temp = document.querySelector('.temp');
 //         desc.innerHTML = descValue;
 //     });
 
-// COPY
-
-
-button.addEventListener('click', function(){
-    fetch('https://api.openweathermap.org/data/2.5/weather?q='+inputValue.value+'&appid=98714695d6d6eca2461e95c2aa78b140')
-    .then(response => response.json())
-    // .then(data => console.log(data))
-    .then(data => {
-        var nameValue = data['name'];
-        var tempValue = data['main']['temp'];
-        var descValue = data['weather'][0]['description'];
-
-        name.innerHTML = nameValue;
-        temp.innerHTML = tempValue;
-        desc.innerHTML = descValue;
-    })
-});
-
-    // $.get('https://api.openweathermap.org/data/2.5/weather?zip=' + zipCode + ',us&appid='+apiKey, function (response) {
-    //     console.log(response);
-    // });
-
-    
-
-// .catch(err => alert("wrong city name!"))
-// })
-
-
-        
-
-
-
-
-        
-        
-        
-</script>
-
-
-
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
+// COPY -->
